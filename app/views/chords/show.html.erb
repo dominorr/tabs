@@ -1,0 +1,5 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_chord_path(@chord) %> |
+<%= link_to 'Back', chords_path %>
+<p class='chord' data-positions='<%=@chord.positions%>' data-fingering='<%=@chord.fingering%>' > <%="#{@chord.root}#{@chord.chord_type}"%></p>

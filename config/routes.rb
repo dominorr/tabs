@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :chords
   get 'sessions/new'
 
   root to: "users#index"

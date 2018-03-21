@@ -1,0 +1,21 @@
+<%= form_with(model: chord, local: true) do |form| %>
+  <% if chord.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(chord.errors.count, "error") %> prohibited this chord from being saved:</h2>
+
+      <ul>
+      <% chord.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% @chord.attributes.except('id', 'created_at', 'updated_at').keys.each do |attr| %>
+    <%= form.label attr %>
+    <%= form.text_field attr %>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
