@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_tab_path(@tab) %> |
+<%= link_to 'Back', tabs_path %>
+<div id='chords'>
+<% @tab.lyrics.split.each_with_index do |word, index| %>
+	<% match_found = false %>
+	<% @chord_root_positions.each_with_index do |chord_position, chord_index| %>
+		<% if index == chord_position[1].to_i %>
+			<p class='chord' style="height:20px; width:<%=word.size*7%>px;" data-positions='<%=@tab.chords[chord_index].positions%>' data-fingering='<%=@tab.chords[chord_index].fingering%>' > <%="#{@tab.chords[chord_index].root}#{@tab.chords[chord_index].chord_type}"%></p>
+			<% match_found = true %>
+			<% break %>
+		<% end %>
+	<% end %>
+	<% next if match_found %>
+	<p class='empty-chord' style="height:20px; width:<%=word.size*7%>px;"></p>
+<% end %>
+</div>
+<p><%=@tab.lyrics%></p>
+

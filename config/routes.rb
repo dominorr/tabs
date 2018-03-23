@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tabs
   resources :chords
   get 'sessions/new'
 

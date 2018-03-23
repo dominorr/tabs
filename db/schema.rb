@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321204854) do
+ActiveRecord::Schema.define(version: 20180323182012) do
 
   create_table "chords", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "root"
@@ -21,6 +21,22 @@ ActiveRecord::Schema.define(version: 20180321204854) do
     t.datetime "updated_at", null: false
     t.string "positions"
     t.string "fingering"
+  end
+
+  create_table "chords_tabs", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.bigint "chord_id", null: false
+    t.bigint "tab_id", null: false
+  end
+
+  create_table "tabs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "title"
+    t.string "scale"
+    t.string "author"
+    t.string "genre"
+    t.text "lyrics"
+    t.string "chord_positions"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
