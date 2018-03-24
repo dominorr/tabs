@@ -19,9 +19,7 @@
   <%= form.text_field :author %>
   <%= form.label :Genre %>
   <%= form.text_field :genre %>
-  <%= form.label :Lyrics %>
-  <%= form.text_field :lyrics %>
-  <%= form.label :Chord_positions %>
+  <!--<%= form.label :Chord_positions %>
   <input name="tab[chord_positions][]" type='text'/>
   <input name="tab[chord_positions][]" type='text'/>
   <input name="tab[chord_positions][]" type='text'/>
@@ -30,9 +28,16 @@
   <input name="tab[chords][]" type='text'/>
   <input name="tab[chords][]" type='text'/>
   <input name="tab[chords][]" type='text'/>
-  <input name="tab[chords][]" type='text'/>
+  <input name="tab[chords][]" type='text'/> -->
 
   <div class="actions">
     <%= form.submit %>
   </div>
+  <div class='lyrics-and-chords'>
+    <div class='lyrics'>
+      <textarea name='tab[lyrics]' id='the-lyrics' rows='10' cols='50'></textarea>
+    </div>
+    
+  </div>
+  <button type='button' id='submit-lyrics' class='btn btn-primary'>Click</button>
 <% end %>
