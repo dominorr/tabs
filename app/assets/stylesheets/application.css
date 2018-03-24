@@ -10,6 +10,64 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *= require bootstrap.min
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
+
+#tabs-navbar{
+	padding: 10px;
+	border-bottom: 1px solid grey;
+	background-color: white;
+}
+
+.sidebar{
+	width: 100px;
+	background-color: #111;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding-top: 50px;
+}
+
+.sidebar-options{
+	padding: 20px 20px;
+	font-size: 15px;
+	background-color: #111;
+	text-align: right;
+
+}
+
+.sidebar-options:hover{
+	background-color: grey;
+	font-size: 20px;
+	transition: background-color 100ms linear;
+	color: white;
+}
+
+.sidebar-link:hover{
+	text-decoration: none;
+}
+
+.navbar-options{
+	padding: 0 10px;
+}
+
+.navbar-options:hover{
+	text-decoration: none;
+
+}
+
+.navbar{
+	height: 50px;
+}
+
+#yield-column{
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	border: 100px;
+	height: 100%;
+	width: 500px;
+}

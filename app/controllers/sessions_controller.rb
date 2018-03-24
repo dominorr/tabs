@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-
+    session[:user_id] = nil
+    redirect_to tabs_path 
   end
 end
