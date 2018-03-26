@@ -1,4 +1,5 @@
 class TabsController < ApplicationController
+  before_action :authenticate_user!, only: [:new]
   before_action :set_tab, only: [:show, :edit, :update, :destroy]
 
   # GET /tabs
@@ -27,9 +28,6 @@ class TabsController < ApplicationController
   # POST /tabs
   # POST /tabs.json
   def create
-    puts 'INSIDE CREATE'
-      puts tab_params.to_yaml
-
     @tab = Tab.new(tab_params.except(:chords))
     chords = []
     tab_params[:chords].each do |chord_name|
