@@ -7,25 +7,25 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-	<div id='tabs-navbar' class="navbar navbar-inverted navbar-fixed-top">
-	    <div class="container-fluid">
-	      	<% if current_user.nil? %>
-	      		<%= link_to "<i class='fa fa-sign-in' style='font-size: 30px;' aria-hidden='true'></i>".html_safe, new_user_session_path, class: 'pull-right navbar-options' %>
-	    	<% else %>
-	    		<%= link_to "<i class='fa fa-sign-out' style='font-size: 30px;' aria-hidden='true'></i>".html_safe, destroy_user_session_path, method: :delete, class: 'pull-right navbar-options', id: 'logout-option' %>
-	    		<%= link_to "<i class='fa fa-user' style='font-size: 30px;' aria-hidden='true'></i>".html_safe, current_user, class: 'pull-right navbar-options'%>
-	    	<% end %>
-	    	
-	    </div>
-    </div>
-    <div class='sidebar'>
-    	<%= link_to "<div class='sidebar-options'>TABS</div>".html_safe, tabs_path, class: 'sidebar-link' %>
-    	<%= link_to "<div class='sidebar-options'>USERS</div>".html_safe, users_path, class: 'sidebar-link'%>
+	<div class='sidebar'>
+        <%= link_to "<div class='sidebar-options'>TABS</div>".html_safe, tabs_path, class: 'sidebar-link' %>
+        <%= link_to "<div class='sidebar-options'>USERS</div>".html_safe, users_path, class: 'sidebar-link'%>
 
-    </div>
+      </div>
   <body>
     <!--<div style='margin-top: 70px;'></div>-->
     <div id='yield-column'>
+      <div id='tabs-navbar' class="navbar navbar-inverted navbar-fixed-top">
+        <div class="container-fluid">
+            <% if current_user.nil? %>
+              <%= link_to "<i class='fa fa-sign-in' style='font-size: 30px;' aria-hidden='true'></i>".html_safe, new_user_session_path, class: 'pull-right navbar-options' %>
+          <% else %>
+            <%= link_to "<i class='fa fa-sign-out' style='font-size: 30px;' aria-hidden='true'></i>".html_safe, destroy_user_session_path, method: :delete, class: 'pull-right navbar-options', id: 'logout-option' %>
+            <%= link_to "<i class='fa fa-user' style='font-size: 30px;' aria-hidden='true'></i>".html_safe, current_user, class: 'pull-right navbar-options'%>
+          <% end %>
+          
+        </div>
+      </div>
     	<%= yield %>
     </div>
   </body>

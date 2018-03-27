@@ -1,4 +1,4 @@
-<%= form_with(model: tab, local: true) do |form| %>
+<%= form_with(model: tab, local: true, id: 'new-tab-form') do |form| %>
   <% if tab.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(tab.errors.count, "error") %> prohibited this tab from being saved:</h2>
@@ -10,34 +10,34 @@
       </ul>
     </div>
   <% end %>
-
-  <%= form.label :Title %>
-  <%= form.text_field :title %>
-  <%= form.label :Scale %>
-  <%= form.text_field :scale %>
-  <%= form.label :Author %>
-  <%= form.text_field :author %>
-  <%= form.label :Genre %>
-  <%= form.text_field :genre %>
-  <!--<%= form.label :Chord_positions %>
-  <input name="tab[chord_positions][]" type='text'/>
-  <input name="tab[chord_positions][]" type='text'/>
-  <input name="tab[chord_positions][]" type='text'/>
-  <input name="tab[chord_positions][]" type='text'/>
-  <%= form.label :Chords %>
-  <input name="tab[chords][]" type='text'/>
-  <input name="tab[chords][]" type='text'/>
-  <input name="tab[chords][]" type='text'/>
-  <input name="tab[chords][]" type='text'/> -->
-
+  <div id='tab-info'>
+    <table>
+      <tr>
+        <td><%= form.label :Title, class: 'new-tab-labels' %></td>
+        <td><%= form.text_field :title, class: 'form-textfield', placeholder: 'Song name' %></td>
+      </tr>
+      <tr>
+        <td><%= form.label :Scale, class: 'new-tab-labels' %></td>
+        <td><%= form.text_field :scale, class: 'form-textfield', placeholder: 'Tab scale' %></td>
+      </tr>
+      <tr>
+        <td><%= form.label :Author, class: 'new-tab-labels' %></td>
+        <td><%= form.text_field :author, class: 'form-textfield', placeholder: 'Song author' %></td>
+      </tr>
+      <tr>
+        <td><%= form.label :Genre, class: 'new-tab-labels' %></td>
+        <td><%= form.text_field :genre, class: 'form-textfield', placeholder: 'Song genre' %></td>
+      </tr>
+    </table>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>
-  <div class='lyrics-and-chords'>
-    <div class='lyrics'>
-      <textarea name='tab[lyrics]' id='the-lyrics' rows='10' cols='50'></textarea>
-    </div>
-    
+  <div id='tab-lyrics'>
+      <textarea name='tab[lyrics]' class='form-textfield' id='the-lyrics' rows='20' cols='50'></textarea>
+  </div>
+  <div id='tab-chords'>
+
   </div>
   <button type='button' id='submit-lyrics' class='btn btn-primary'>Click</button>
 <% end %>
