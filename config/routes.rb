@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ratings
   resources :tabs
   resources :chords
   delete '/logout', to: 'sessions#destroy'

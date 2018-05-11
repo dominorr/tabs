@@ -11,6 +11,7 @@
     </div>
   <% end %>
   <div id='tab-info'>
+    <p class='new-tab-steps'>Introduce tab info</p>
     <table>
       <tr>
         <td><%= form.label :Title, class: 'new-tab-labels' %></td>
@@ -29,15 +30,35 @@
         <td><%= form.text_field :genre, class: 'form-textfield', placeholder: 'Song genre' %></td>
       </tr>
     </table>
+    <button type='button' class='tabs-button' id='to-add-lyrics'>Add some lyrics</button>
   </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  
   <div id='tab-lyrics'>
-      <textarea name='tab[lyrics]' class='form-textfield' id='the-lyrics' rows='20' cols='50'></textarea>
+  <p class='new-tab-steps'>Add lyrics</p>
+    <textarea name='tab[lyrics]' class='form-textfield' id='the-lyrics' rows='20' cols='50'></textarea>
+    <div class='row'>
+      <div class='col-lg-6'>
+        <button type='button' class='tabs-button' id='back-to-tab-info'>Back to tab info</button>
+      </div>
+      <div class='col-lg-6'>  
+        <button type='button' class='tabs-button' id='to-add-chords'>Add some chords</button>
+      </div>    
+    </div>
   </div>
   <div id='tab-chords'>
+    <div id='lyrics-and-chords'>
 
+    </div>
+    <div class='row'>
+      <div class='col-lg-6'>
+        <button type='button' class='tabs-button' id='back-to-add-lyrics'>Back to lyrics</button>
+      </div>
+      <div class='col-lg-6'>  
+        <div class="actions">
+        <%= form.submit 'Create tab', class: 'tabs-button'%>
+        </div>
+      </div>
+    </div>
   </div>
-  <button type='button' id='submit-lyrics' class='btn btn-primary'>Click</button>
+  
 <% end %>

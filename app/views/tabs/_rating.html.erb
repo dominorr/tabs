@@ -1,0 +1,11 @@
+<div class='row'>
+	<div class='col-lg-12 thumbs-div'>
+		<%= link_to "<i class='fa fa-thumbs-up like-button' style='font-size: 20px;'></i>".html_safe, ratings_path(value: true), class: 'create-rating', method: 'post', remote: true %>
+		<i class='fa fa-thumbs-up like-button' style='font-size: 20px;'></i>
+		<i class='fa fa-thumbs-down dislike-button' style='font-size: 20px;'></i>
+	</div>
+	<div class='col-lg-12 rating-bar'>
+		<div class='likes-bar' style="width: <%= tab.likes_percentage*2 %>px; display:inline-block;"></div>
+		<div class='dislikes-bar' style="width: <%= tab.dislikes_percentage*2 %>px; display: inline-block;"></div>
+	</div>
+</div>

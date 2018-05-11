@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180323182012) do
+ActiveRecord::Schema.define(version: 20180505160908) do
 
   create_table "chords", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "root"
@@ -26,6 +26,26 @@ ActiveRecord::Schema.define(version: 20180323182012) do
   create_table "chords_tabs", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.bigint "chord_id", null: false
     t.bigint "tab_id", null: false
+  end
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "tab_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tab_id"], name: "index_comments_on_tab_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "ratings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.boolean "value"
+    t.bigint "user_id"
+    t.bigint "tab_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tab_id"], name: "index_ratings_on_tab_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "tabs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
