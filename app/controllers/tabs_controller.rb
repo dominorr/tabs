@@ -19,6 +19,7 @@ class TabsController < ApplicationController
   # GET /tabs/new
   def new
     @tab = Tab.new
+    @chords = Chord.all
   end
 
   # GET /tabs/1/edit

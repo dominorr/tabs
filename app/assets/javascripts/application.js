@@ -97,13 +97,13 @@ $(document).ready(function(){
 	}
 
 	$('.chord').hover(function(){
-  		$(this).after("<canvas id='canvas' width='200' height='200'></canvas>");
+  		$(this).after("<canvas id='canvas' width='200' height='200' style='position: absolute; z-index: 9999; background-color: #f5f5f5;border-radius: 5px; border: 2px solid lightgrey;'></canvas>");
   		var c = document.getElementById('canvas');
   		ctx = c.getContext('2d');
 
   		ctx.font = "18px Arial";
   		drawChord(chord($(this).data('positions'), $(this).data('fingering')));
-  		$('#canvas').show();
+  		$('#canvas').slideDown(200);
   	},function(){
   		$(this).next().remove();
   	})

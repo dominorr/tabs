@@ -7,6 +7,9 @@
 	
 }
 
+.lyrics-line{
+}
+
 h1{
 	font-size: 50px;
 	text-shadow: 1px 1px 3px grey;
@@ -14,10 +17,22 @@ h1{
 
 .like-button{
 	color: white;
+	font-size: 20px;
 }
 
 .dislike-button{
+	font-size: 20px;
 	color: white;
+}
+
+.number-of-likes{
+	display: inline-block;
+	margin-right: 30px;
+}
+
+.number-of-dislikes{
+	margin-right: 30px;
+	display: inline-block;
 }
 
 .like-button:hover{
@@ -35,13 +50,17 @@ h1{
 	background-color: green;
 	display: inline-block;
 	border-radius: 2px 0 0 2px;
+	padding: 2px;
+	color: #f5f5f5;
 }
 
 .dislikes-bar{
 	height: 10px;
 	display: inline-block;
 	background-color: darkred;
+	padding: 2px;
 	border-radius: 0 2px 2px 0;
+	color: #f5f5f5;
 }
 
 .rating-bar{

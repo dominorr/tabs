@@ -1,21 +1,5 @@
 $(document).ready(function(){
-	$('#to-add-chords').click(function(){
-		$('#tab-lyrics').slideUp('fast');
-		var lyrics = $('#the-lyrics').val();
-		var lines = lyrics.split('\n');
-		var line_number = 1;
-		var chord_position = 0;
-		lines.forEach(function(line){
-			$('#lyrics-and-chords').append("<div id='chord-list"+line_number+"'></div>");
-			line.split(' ').forEach(function(word){
-				$("#chord-list"+line_number).append("<select class='select-chord' data-chord-position='"+chord_position+"' name='tab[chords][]' style='width:"+(word.length*10+20)+"px;'><option disabled selected value> -- select -- </option><option value='C'>C</option><option value='E'>E</option></select>");
-				chord_position = chord_position + 1;
-			})
-			$('#lyrics-and-chords').append("<p style='font-size:17px;word-spacing:20px;'>"+line+"</p>");
-			line_number = line_number + 1;
-		})
-		$('#tab-chords').slideDown('fast');
-	})
+	
 	$(document).on('change', ".select-chord", function(){
 		$('#lyrics-and-chords').append("<input class='sam-hidden' type='hidden' name='tab[chord_positions][]' value='"+$(this).data('chord-position')+"'/>");
 	})
@@ -33,12 +17,33 @@ $(document).ready(function(){
 		$('#tab-lyrics').slideDown('fast');
 	})
 
-	function createRating(event, data){
-		console.log(data['like-rating']);
-		console.log(data['dislike-rating']);
-	}
-
-	$("create-rating").on('ajax:success', createRating());
-	
+	$('.like-button').click(function(){
+		$.ajax({
+			type: 'POST',
+			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+			dataType: 'json',
+			data: { rating: {tab_id: $('.show-tab').data('tab-id'), value: true }},
+			url: '/ratings.json',
+			success: function(data){
+				$('.likes-bar').css('width', data['likes_percentage'] + 'px');
+				$('.dislikes-bar').css('width', data['dislikes_percentage'] + 'px');
+				$('.number-of-likes').text(data['number_of_likes'])
+			}
+		})
+	})
+	$('.dislike-button').click(function(){
+		$.ajax({
+			type: 'POST',
+			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+			dataType: 'json',
+			data: { rating: {tab_id: $('.show-tab').data('tab-id'), value: false }},
+			url: '/ratings.json',
+			success: function(data){
+				$('.likes-bar').css('width', data['likes_percentage'] + 'px');
+				$('.number-of-dislikes').text(data['number_of_dislikes'])
+				$('.dislikes-bar').css('width', data['dislikes_percentage'] + 'px');
+			}
+		})
+	})
 
 })
