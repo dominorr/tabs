@@ -1,6 +1,7 @@
 class Tab < ApplicationRecord
 	serialize :chord_positions, Array
-	has_and_belongs_to_many :chords
+	has_many :chord_tabs
+	has_many :chords, through: :chord_tabs
 	has_many :ratings
 
 	def likes_percentage

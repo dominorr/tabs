@@ -11,9 +11,10 @@ class TabsController < ApplicationController
   # GET /tabs/1
   # GET /tabs/1.json
   def show
-    @tab = Tab.find params[:id]
-    @chord_root_positions = @tab.chords.pluck(:root).zip(@tab.chord_positions)
-
+    @chord_root_positions = ChordTab.where(tab_id: @tab.id).map{|e| e.chord}.pluck(:root).zip(@tab.chord_positions)
+    @tab_chords = ChordTab.where(tab_id: @tab.id).map{|e| e.chord}
+    puts "HEEEEEEERE"
+    puts @chord_root_positions
   end
 
   # GET /tabs/new
@@ -31,9 +32,13 @@ class TabsController < ApplicationController
   def create
     @tab = Tab.new(tab_params.except(:chords))
     chords = []
+    puts "PARAAAAAAMS"
+    puts tab_params.to_yaml
     tab_params[:chords].each do |chord_name|
       chords << Chord.find_by(root: chord_name)
     end
+    puts 'CHOOOOOORD'
+    puts chords.pluck(:root)
     @tab.chords = chords
 
     respond_to do |format|
@@ -79,8 +84,6 @@ class TabsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tab_params
-      puts 'INSIDE PARAMS'
-      puts params.to_yaml
       params.require(:tab).permit(:title, :scale, :author, :genre, :lyrics, chord_positions: [], chords: [])
     end
 end

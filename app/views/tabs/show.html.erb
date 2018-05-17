@@ -5,32 +5,42 @@
 </br>
 <div class='show-tab' data-tab-id='<%= @tab.id %>'>
 	<div id='chords'>
-	<% right_index = 0 %>
-	<% @tab.lyrics.split("\n").each do |line| %>
-		<% line.split.each_with_index do |word, index| %>
-			<% index = right_index %>
-			<% match_found = false %>
-			<% @chord_root_positions.each_with_index do |chord_position, chord_index| %>
-				<% if index == chord_position[1].to_i %>
-					<div style="display: inline-block;position: relative; z-index: 1;">
-						<p class='chord' style="height:20px; width:<%=word.size*7%>px;" data-positions='<%=@tab.chords[chord_index].positions%>' data-fingering='<%=@tab.chords[chord_index].fingering%>' > <%="#{@tab.chords[chord_index].root}#{@tab.chords[chord_index].chord_type}"%></p>
-					</div>
-					<% match_found = true %>
-					<% break %>
+		<% right_index = 0 %>
+		<% @tab.lyrics.split("\n").each do |line| %>
+			<% line.split.each_with_index do |word, index| %>
+				<% index = right_index %>
+				<% match_found = false %>
+				<% @chord_root_positions.each_with_index do |chord_position, chord_index| %>
+					<% if index == chord_position[1].to_i %>
+						<div style="display: inline-block;position: relative; z-index: 1;">
+							<p class='chord' style="height:20px; width:<%=word.size*7%>px;" data-positions='<%=@tab_chords[chord_index].positions%>' data-fingering='<%=@tab_chords[chord_index].fingering%>' > <%="#{@tab_chords[chord_index].root}#{@tab_chords[chord_index].chord_type}"%></p>
+						</div>
+						<% match_found = true %>
+						<% break %>
+					<% end %>
 				<% end %>
+				<% right_index = right_index + 1 %>
+				<% next if match_found %>
+				<p class='empty-chord' style="height:20px; width:<%=word.size*7%>px;"></p>
 			<% end %>
-			<% right_index = right_index + 1 %>
-			<% next if match_found %>
-			<p class='empty-chord' style="height:20px; width:<%=word.size*7%>px;"></p>
+			<p class='lyrics-line'> <%= line %></p>
 		<% end %>
-		<p class='lyrics-line'> <%= line %></p>
-	<% end %>
 	</div>
-	
+	<%= render 'rating', tab: @tab %>
 </div>
+<% if current_user %>
+	<div class='comments-section'>
+		<%= form_with model: Comment.new, remote: true, class: 'comment-form pull-left', id: 'comment-form' do |f| %>
+		  <%= f.text_area :content, size:"80x8", class: 'comment-textarea', placeholder: 'Start typing a comment' %>
+		  <%= f.hidden_field :user_id, value: current_user.id %>
+		  <%= f.hidden_field :tab_id, value: @tab.id %>
+		  <%= f.submit "Post comment", class: 'tabs-button', id: 'comment-submit-button' %>
+		<% end %>
+		<div id='comments'>
 
-
-<%= render 'rating', tab: @tab %>
+		</div>
+	</div>
+<% end %>
 
 
 

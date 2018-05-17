@@ -15,6 +15,27 @@ h1{
 	text-shadow: 1px 1px 3px grey;
 }
 
+.show-tab{
+	border-bottom: 1px solid #f5f5f5;
+}
+
+.comment-textarea{
+	background-color: rgba(25,25,25,0.7);
+	border-top: none;
+	border-radius: 0 0 3px 3px;
+	resize: none;
+}
+
+#comment-submit-button{
+	display: inline-block;
+	position: relative;
+    bottom: 65px;
+}
+
+.comment-form{
+	margin: 20px;
+}
+
 .like-button{
 	color: white;
 	font-size: 20px;

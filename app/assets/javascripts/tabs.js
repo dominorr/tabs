@@ -46,4 +46,8 @@ $(document).ready(function(){
 		})
 	})
 
+	$('#comment-form').on('ajax:success', function(data){
+		console.log(data['content']);
+	})
+
 })
