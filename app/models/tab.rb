@@ -3,6 +3,10 @@ class Tab < ApplicationRecord
 	has_many :chord_tabs
 	has_many :chords, through: :chord_tabs
 	has_many :ratings
+	has_many :comments
+	belongs_to :user
+	has_many :favorites
+	has_many :users, through: :favorites
 
 	def likes_percentage
 		self.get_likes.size.to_f / self.ratings.size.to_f * 100

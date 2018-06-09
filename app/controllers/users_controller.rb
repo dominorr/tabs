@@ -12,6 +12,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find_by_id(params[:id])
+    favorites_ids = Favorite.where(user_id: @user.id).pluck(:tab_id)
+    @favorites = Tab.find favorites_ids
   end
 
   # GET /users/new

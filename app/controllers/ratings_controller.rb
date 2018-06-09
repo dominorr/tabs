@@ -35,6 +35,7 @@ class RatingsController < ApplicationController
     response ={}
 
     @rating = Rating.new(rating_params)
+    @rating.user = current_user
 
     respond_to do |format|
       if @rating.save

@@ -8,9 +8,11 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 	<div class='sidebar'>
-        <%= link_to "<div class='sidebar-options'>TABS</div>".html_safe, tabs_path, class: 'sidebar-link' %>
-        <%= link_to "<div class='sidebar-options'>USERS</div>".html_safe, users_path, class: 'sidebar-link'%>
-
+        <% if current_user %>
+          <%= link_to "<div class=#{current_page?(user_path(current_user)) ? 'home-page-option' : 'sidebar-options'}>HOME</div>".html_safe, user_path(current_user), class: 'sidebar-link'%>
+        <% end %>
+        <%= link_to "<div class=#{current_page?(tabs_path) ? 'home-page-option' : 'sidebar-options'}>TABS</div>".html_safe, tabs_path, class: 'sidebar-link' %>
+        <%= link_to "<div class=#{current_page?(new_tab_path) ? 'home-page-option' : 'sidebar-options'}>NEW TAB</div>".html_safe, new_tab_path, class: 'sidebar-link' %>
       </div>
   <body>
     <!--<div style='margin-top: 70px;'></div>-->
@@ -23,7 +25,6 @@
             <%= link_to "<i class='fa fa-sign-out' style='font-size: 30px;' aria-hidden='true'></i>".html_safe, destroy_user_session_path, method: :delete, class: 'pull-right navbar-options', id: 'logout-option' %>
             <%= link_to "<i class='fa fa-user' style='font-size: 30px;' aria-hidden='true'></i>".html_safe, current_user, class: 'pull-right navbar-options'%>
           <% end %>
-          
         </div>
       </div>
     	<%= yield %>

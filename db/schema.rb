@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180517175432) do
+ActiveRecord::Schema.define(version: 20180604165626) do
 
   create_table "chord_tabs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "chord_id"
@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(version: 20180517175432) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "user_id"
+    t.integer "tab_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ratings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.boolean "value"
     t.bigint "user_id"
@@ -60,6 +67,7 @@ ActiveRecord::Schema.define(version: 20180517175432) do
     t.string "chord_positions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

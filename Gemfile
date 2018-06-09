@@ -17,6 +17,8 @@ gem 'jquery-rails'
 
 gem 'font-awesome-rails'
 
+gem 'ransack'
+
 gem 'devise'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

@@ -17,6 +17,12 @@ $(document).ready(function(){
 		$('#tab-lyrics').slideDown('fast');
 	})
 
+	$('.sidebar-options').hover(function(){
+		$(this).toggleClass('selected-sidebar-option');
+	},function(){
+		$(this).toggleClass('selected-sidebar-option');
+	})
+
 	$('.like-button').click(function(){
 		$.ajax({
 			type: 'POST',
@@ -48,6 +54,32 @@ $(document).ready(function(){
 
 	$('#comment-form').on('ajax:success', function(data){
 		console.log(data['content']);
+	})
+
+	$('.add-to-favorites').hover(function(){
+		$(this).toggleClass('favorited');
+	}, function(){
+		$(this).toggleClass('favorited');
+	})
+
+	$('.add-to-favorites').click(function(){
+		var this_element = $(this);
+		$.ajax({
+			type: 'POST',
+			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+			dataType: 'json',
+			data: { tab_id: $('.show-tab').data('tab-id') },
+			url: '/favorites.json',
+			success: function(data){
+				var child_p = this_element.children('p');
+				if(child_p.text() == 'Add to favorites'){
+					child_p.text('Remove from favorites');
+				}else{
+					child_p.text('Add to favorites');
+				}
+				this_element.toggleClass('favorited');
+			}
+		})
 	})
 
 })

@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-<h1><%= @user.email %> page</h1>
-<p>Current user: <%=current_user.try(:email)%></p>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<h2><%= @user.name %>'s home page</h2>
+<%= link_to 'Edit', edit_user_path(@user) %>
+<% @favorites.each do |f| %>
+	<%= f.title %>
+	<%= f.author %>
+<% end %>

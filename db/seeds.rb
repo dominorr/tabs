@@ -5,9 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+Chord.destroy_all
 Chord.create(root: 'C', chord_type: 'major', barre: false, positions: [0,3,2,0,1,0], fingering: [0,3,2,0,1,0])
 Chord.create(root: 'E', chord_type: 'major', barre: false, positions: [0,2,2,1,0,0], fingering: [0,2,3,1,0,0])
 Chord.create(root: 'A', chord_type: 'minor', barre: false, positions: [0,0,2,2,1,0], fingering: [0,0,2,3,1,0])
 Chord.create(root: 'G', chord_type: 'major', barre: false, positions: [3,2,0,0,0,3], fingering: [3,2,0,0,0,4])
 Chord.create(root: 'F', chord_type: 'major', barre: false, positions: [1,3,3,2,1,1], fingering: [1,3,4,2,1,1])
+Tab.destroy_all
+1.upto(10).each do |n|
+  Tab.create(title: "title#{n}", author: "author#{n}", lyrics: "lyrics#{n}", user_id: User.first.id)
+end

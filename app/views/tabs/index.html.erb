@@ -2,19 +2,29 @@
 
 <h1>Tabs</h1>
 
-<table>
+<table id='tabs-table'>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th colspan="3">Song name</th>
+      <th colspan="3">Tab author</th>
+      <th colspan="3">Rating</th>
+      <th colspan="3">Votes</th>
+    </tr>
+    <tr>
+      <%= search_form_for @q do |f| %>
+        <td colspan='3'><%= f.search_field :title %></td>
+        <td colspan='3' class='pull-right'><%= f.submit %></td>
+      <% end %>
     </tr>
   </thead>
 
   <tbody>
     <% @tabs.each do |tab| %>
       <tr>
-        <td><%= link_to 'Show', tab %></td>
-        <td><%= link_to 'Edit', edit_tab_path(tab) %></td>
-        <td><%= link_to 'Destroy', tab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td colspan='3'><%= link_to tab.title, tab_path(tab), class: 'tabs-link' %></td>
+        <td colspan='3'><%= tab.user.name %></td>
+        <td colspan='3'><%= tab.likes_percentage.ceil rescue 0 %>%</td>
+        <td colspan='3'><%= tab.ratings.size %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,5 +32,5 @@
 
 <br>
 
-<%= link_to 'New Tab', new_tab_path %>
+<%= button_to 'New Tab', new_tab_path, class: 'tabs-button', method: :get %>
 

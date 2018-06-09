@@ -31,5 +31,4 @@
   </table>
   <%= f.submit "Log in", class: 'tabs-button' %>
 <% end %>
-
-<%= render "devise/shared/links" %>
+<%= button_to "Create an account", new_registration_path(resource_name), class: 'tabs-button', method: :get %>

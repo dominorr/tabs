@@ -29,13 +29,14 @@
         <td><%= form.label :Genre, class: 'new-tab-labels' %></td>
         <td><%= form.text_field :genre, class: 'form-textfield', placeholder: 'Song genre' %></td>
       </tr>
+      <%= form.hidden_field :user_id, value: current_user.id %>
     </table>
     <button type='button' class='tabs-button' id='to-add-lyrics'>Add some lyrics</button>
   </div>
   
   <div id='tab-lyrics'>
   <p class='new-tab-steps'>Add lyrics</p>
-    <textarea name='tab[lyrics]' class='form-textfield' id='the-lyrics' rows='20' cols='50'></textarea>
+    <textarea name='tab[lyrics]' class='form-textfield' id='the-lyrics' rows='20' cols='50'><%= tab.lyrics %></textarea>
     <div class='row'>
       <div class='col-lg-6'>
         <button type='button' class='tabs-button' id='back-to-tab-info'>Back to tab info</button>
@@ -55,7 +56,7 @@
       </div>
       <div class='col-lg-6'>  
         <div class="actions">
-        <%= form.submit 'Create tab', class: 'tabs-button'%>
+          <%= form.submit current_page?(new_tab_path) ? 'Create tab' : 'Update tab', class: 'tabs-button'%>
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@
  */
 
 ::-webkit-scrollbar {
-    width: 50px;
+    width: 10px;
 }
 
 select option{
@@ -31,7 +31,7 @@ select option{
 }
 
 .sidebar{
-	width: 100px;
+	width: 140px;
 	background-color: #111;
 	height: 100%;
 	position: fixed;
@@ -46,14 +46,28 @@ select option{
 	font-size: 15px;
 	background-color: #111;
 	text-align: right;
-
+	margin-bottom: 5px;
 }
 
-.sidebar-options:hover{
+.home-page-option{
 	background-color: grey;
 	font-size: 20px;
 	transition: background-color 100ms linear;
 	color: white;
+	padding: 20px 20px;
+	text-align: right;
+	border-left: 7px solid #FF9900;
+	margin-bottom: 5px;
+}
+
+.selected-sidebar-option{
+	background-color: grey;
+	font-size: 20px;
+	transition: background-color 100ms linear;
+	color: white;
+	padding: 20px 20px;
+	text-align: right;
+	margin-bottom: 5px;
 }
 
 .sidebar-link:hover{
